@@ -15,6 +15,7 @@ const dispatch = createDispatchModule([{
   ]],
 }])
 
+
 const { getRefs, render } = createSSRModule(AppSSR, {
   store, proxy,
 })
@@ -58,7 +59,7 @@ export function createSSRModule(App: React.FC<any>, opts: ISSRModuleOpts = {} as
   function render(url: string) {
     return renderToStaticNodeStream(<App location={url} />)
   }
-
+  
   function getRefs() {
     return { store, proxy }
   }

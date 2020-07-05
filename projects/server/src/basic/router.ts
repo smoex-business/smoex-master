@@ -54,19 +54,20 @@ router.get('/api/*', async (ctx, next) => {
 
 
 router.get('*', async (ctx: any, next) => {
-    const { 
-        staticPath = '', 
-        ssrModulePath = '', 
-        excludeStaticPaths = ['/static', '/api'],
-     } = ctx.config
 
+    let { 
+        staticPath = '', 
+        ssrModulePath = '',
+        excludeStaticPaths = ['/static', '/api', '/bff'],
+    } = ctx.config
+
+    console.log(staticPath)
     if (excludeStaticPaths.find((path: string) => ctx.url.startsWith(path))) {
         await next()
         return
     }
 
 
-    
     const indexPath = `${staticPath}/index.html`
     let shtml = process.env.NODE_ENV === 'production' 
         ? (await client.get(indexPath)).content.toString()
@@ -85,7 +86,6 @@ router.get('*', async (ctx: any, next) => {
         if (proxy) {
             setServerProxyOptions(ctx, proxy)
         }
-        console.log(7777777)
         const opts = { shtml, url: ctx.url }
         ctx.body = await renderHtmlStream(ssr, opts)
     }

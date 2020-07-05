@@ -39,6 +39,28 @@ const initialize = async (ctx: Context, next: Next) => {
    await next()
 }
 
+const afterConfigure = async (ctx: Context, next: Next) => {
+    const { remotePaths = {} } = ctx.config
+    const ua = ctx.header['user-agent']
+    const isMobile = /AppleWebKit.*Mobile.*/i.test(ua)
+    ctx.config.staticPath = isMobile ? remotePaths["/"].mobile : remotePaths["/"].web
+ 
+    for (const path of Object.keys(remotePaths)) {
+        const remotePath = remotePaths[path]
+        if (path !== '/' && ctx.url.startsWith(path)) {
+            if (typeof remotePath === 'string') {
+                ctx.config.staticPath = remotePath
+            } else {
+                ctx.config.staticPath = isMobile ? remotePath.mobile : remotePath.web
+            }
+        }
+    }
+
+
+    await next()
+ 
+}
+
 const normalizeError = async (ctx: Context, next: Next) => {
     try {
         await next()
@@ -146,6 +168,7 @@ export const createServer = (config: IServerConfigure = {}) => {
 
     if (configure) {
         app.use(configure)
+        app.use(afterConfigure)
     }
     app.use(normalizeError)
 

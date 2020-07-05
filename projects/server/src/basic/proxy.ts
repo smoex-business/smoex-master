@@ -28,11 +28,15 @@ export function staticProxy(opts: any = {}) {
             await next()
             return
         }
+
+        const idx = ctx.path.indexOf('/static')
+
+        const path = ctx.path.slice(idx)
     
         opts.root = staticPath
         if (ctx.method === 'HEAD' || ctx.method === 'GET') {
             try {
-                done = await send(ctx, ctx.path, opts)
+                done = await send(ctx, path, opts)
             } catch (err) {
                 if (err.status !== 404) {
                     throw err

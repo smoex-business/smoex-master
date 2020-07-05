@@ -6,9 +6,12 @@ var { CleanWebpackPlugin } = require('clean-webpack-plugin')
 var nodeExternals = require('webpack-node-externals')
 
 module.exports = {
-  mode: 'development',
+  mode: 'none',
   entry: {
     index: './src/server.ts',
+  },
+  optimization: {
+    nodeEnv: 'production',
   },
   output: {
     filename: '[name].js',
