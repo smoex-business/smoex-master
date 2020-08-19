@@ -3,7 +3,7 @@ import styles from './styles/HomePage.module.scss'
 import { transformStyles } from 'react-dom-basic-kit'
 import { Link, useLocation } from 'react-router-dom'
 import { accountAsyncAction } from '@smoex-business/user'
-import { homeSlice } from '@smoex-master/business'
+import { homeSlice } from '@smoex-master/logic'
 import { useToggleToast } from 'react-dom-basic-kit'
 const cx = transformStyles(styles)
 

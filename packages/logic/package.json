@@ -1,5 +1,5 @@
 {
-  "name": "@smoex-master/business",
+  "name": "@smoex-master/logic",
   "version": "0.0.1",
   "description": "A simplify work flow for redux",
   "main": "lib/index.js",

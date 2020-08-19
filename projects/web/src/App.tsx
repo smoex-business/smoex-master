@@ -1,13 +1,12 @@
 import * as React from 'react'
 import { Route, Link } from 'react-router-dom'
-import { PageContainer } from '@smoex-web/basic'
 import { configureStore, createSlice } from 'redux-async-kit'
 import { StaticRouter, BrowserRouter } from 'react-router-dom'
 import { createLazyComponent } from 'react-logic-utils'
 import styles from './app.module.scss'
 import { Provider } from 'react-redux'
-import { accountReducer, accountAsyncAction } from '@smoex-business/user'
-import { renderToStaticMarkup } from 'react-dom/server'
+import { accountReducer } from '@smoex-business/user'
+import { Container } from '@smoex-web/basic'
 
 const HomePage = createLazyComponent({
   loader: () => import('./containers/HomePage' /* webpackChunkName: "home" */),
@@ -38,21 +37,20 @@ const User = () => {
   )
 }
 
-export const Routes: React.FC = () => {
-  const [getInfo] = testSlice.useAction(accountAsyncAction.getInfo)
-  React.useEffect(() => {
-    getInfo()
-    // @ts-ignore
-    const initialState = window.__PRELOAD_STATE__
-    console.log(6666, initialState)
-  }, [])
-  return (
-    <React.Suspense fallback={null}>
-      <Route exact path="/" component={HomePage} />
-      <Route path="/user" component={User} />
-    </React.Suspense>
-  )
-}
+// export const Routes: React.FC = () => {
+//   const [getInfo] = testSlice.useAction(accountAsyncAction.getInfo)
+//   React.useEffect(() => {
+//     getInfo()
+//     // @ts-ignore
+//     const initialState = window.__PRELOAD_STATE__
+//     console.log(6666, initialState)
+//   }, [])
+//   return (
+//     <React.Fragment>
+      
+//     </React.Fragment>
+//   )
+// }
 
 // @ts-ignore
 const initialState = typeof window === 'undefined' ? undefined : window.__PRELOAD_STATE__
@@ -66,11 +64,10 @@ export const store = configureStore(
 
 export const App: React.FC<any> = (props) => {
   return (
-    <Provider store={store}>
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
-    </Provider>
+    <Container>
+      <Route exact path="/" component={HomePage} />
+      <Route path="/user" component={User} />
+    </Container>
   )
 }
 
@@ -78,7 +75,7 @@ export const AppSSR: React.FC<any> = (props) => {
   return (
     <Provider store={store}>
       <StaticRouter location={props.location}>
-        <Routes />
+        {/* <Routes /> */}
       </StaticRouter>
     </Provider>
   )

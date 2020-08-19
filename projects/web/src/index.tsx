@@ -1,18 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import * as serviceWorker from './serviceWorker'
-import { initWindowWidth } from 'basic-kit-browser'
+import { starter } from '@smoex-web/basic'
 import { App } from './App'
 
-initWindowWidth()
+starter.initial({})
 
-const isomorphic =
-  process.env.NODE_ENV === 'production' && process.env.REACT_APP_ISOMORPHIC === 'yes'
-const render = isomorphic ? ReactDOM.hydrate : ReactDOM.render
+// initWindowWidth()
 
-render(<App />, document.getElementById('root'))
+// const isomorphic =
+//   process.env.NODE_ENV === 'production' && process.env.REACT_APP_ISOMORPHIC === 'yes'
+// const render = isomorphic ? ReactDOM.hydrate : ReactDOM.render
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister()
+starter.render(<App />, document.getElementById('root'))
+
+// render(<App />, document.getElementById('root'))
+
+starter.regiser()
+// serviceWorker.unregister()

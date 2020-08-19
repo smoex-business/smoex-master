@@ -4,7 +4,7 @@ import { configureStore, useActionCallback } from 'redux-async-kit'
 import { PageRouter, Footer } from '@smoex-mobile/basic'
 import { userSlice, accountAsyncAction } from '@smoex-business/user'
 import { Provider } from 'react-redux'
-import { homeSlice } from '@smoex-master/business'
+import { homeSlice } from '@smoex-master/logic'
 import { createLazyComponent } from 'redux-async-kit'
 
 const store = configureStore({

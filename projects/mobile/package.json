@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@smoex-business/user": "^0.0.4",
-    "@smoex-master/business": "^0.0.1",
+    "@smoex-master/logic": "^0.0.1",
     "@smoex-mobile/basic": "^0.0.2",
     "@types/vfile-message": "^2.0.0",
     "axios": "^0.19.0",

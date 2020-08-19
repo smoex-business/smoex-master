@@ -82,8 +82,11 @@ router.get('*', async (ctx: any, next) => {
     if (ssrModulePath && shtml.includes('isomorphic=yes')) {
         const serverIndexPath = `${ssrModulePath}/index.js`
         const ssr = await getSSRModule(serverIndexPath) as ISSRModule
-        const { proxy } = ssr.getRefs()
-        setServerProxyOptions(ctx, proxy)
+        const { proxy } = ssr.getRefs?.() || {}
+        if (proxy) {
+            setServerProxyOptions(ctx, proxy)
+        }
+        console.log(7777777)
         const opts = { shtml, url: ctx.url }
         ctx.body = await renderHtmlStream(ssr, opts)
     }
@@ -113,9 +116,11 @@ async function renderHtmlStream(ssr: ISSRModule, opts: ISSRStreamOpts) {
     
     await ssr.dispatch?.(opts.url)
     const state = store.getState()
+    console.log(12312123)
     const render = ssr.render(opts.url)
-
+    console.log(render)
     render.pipe(stream, { end: false })
+    
     render.on('end', () => {
         stream.push(mainAfter)
         if (state) {
