@@ -6,14 +6,13 @@ import kstatic from 'koa-static'
 // TODO: 暂时先用这个 middleware, 路由匹配规则之后根据业务需求自己实现 
 //（主要考虑和 koa-router 规则保持一致与目前正则方案的优劣）
 import Router from 'koa-router'
-import { Context, Next, Middleware } from 'koa'
+import { Context } from 'koa'
 import { AxiosInstance } from 'axios'
 import { Store } from 'redux'
 import qs from 'qs'
 
 // @ts-ignore
 import OSS from 'ali-oss'
-
 	
 // smoex-public.oss-cn-shanghai.aliyuncs.com
 const devEndpoint = 'https://smoex-public.oss-cn-shanghai.aliyuncs.com'
