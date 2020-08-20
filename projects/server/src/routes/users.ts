@@ -9,7 +9,7 @@ router.get('/', function (ctx, next) {
 })
 
 router.get('/infox', function (ctx, next) {
-  // throw { code: 1, message: 'xxx' }
+  ctx.throw({ code: 1, message: 'xxx', context: [123] })
   ctx.body = { x: 'this is a users/bar response' }
 })
 
