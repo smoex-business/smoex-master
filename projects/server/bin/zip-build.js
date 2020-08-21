@@ -26,18 +26,19 @@ deleteFolderRecursive = function(url) {
         console.log("给定的路径不存在，请给出正确的路径");
     }
 };
- 
+deleteFolderRecursive('./temp')
 
-if (fs.existsSync('./dist')) {
-    deleteFolderRecursive('dist')
+const rootDir = './build/dist'
+if (fs.existsSync(rootDir)) {
+    deleteFolderRecursive(rootDir)
 }
-fs.mkdirSync('./dist')
-fs.mkdirSync('./dist/build')
-fs.copyFile('./package.json','./dist/package.json',function(err){
+fs.mkdirSync(rootDir)
+fs.mkdirSync(rootDir + '/build')
+fs.copyFile('./package.json',rootDir + '/package.json',function(err){
 	if(err) console.log('something wrong was happened')
 	else console.log('copy file succeed');
 })
-fs.copyFile('./build/index.js','./dist/build/index.js',function(err){
+fs.copyFile('./build/index.js',rootDir + '/build/index.js',function(err){
 	if(err) console.log('something wrong was happened')
 	else console.log('copy file succeed');
 })

@@ -6,7 +6,7 @@ var { CleanWebpackPlugin } = require('clean-webpack-plugin')
 var nodeExternals = require('webpack-node-externals')
 
 module.exports = {
-  mode: 'production',
+  mode: 'development',
   entry: {
     index: './src/server.ts',
   },
