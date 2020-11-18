@@ -1,27 +1,21 @@
 
-import app from './base'
 import { 
     initialize,
-    requestProxy,
     normalizeData,
     normalizeError,
     vaildateParams,
-} from './middewares'
+} from '../middlewares'
 import Router from 'koa-router'
 import { Config } from 'http-proxy-middleware';
+import app from './app'
 import baseRouter from './router'
-
-// type IGlobalConfig = {
-//     staticPath?: string,
-//     ssrModulePath?: string,
-//     excludeStaticPaths?: string[],
-// }
 
 export type IHttpProxyConfig = Record<string, Config>
 
 type IServerConfigure = {
     routers?: Router[],
     middlewares?: any,
+    proxies?: any,
     httpProxy?: IHttpProxyConfig,
 }
 
@@ -36,24 +30,22 @@ export const createServer = (config: IServerConfigure = {}) => {
     const {
         routers = [],
         middlewares = {},
-        httpProxy,
+        proxies = {},
     } = config
 
     app.use(initialize)
 
     const { 
         configure, 
-        staticProxy,
     } = middlewares
 
     if (configure) {
         app.use(configure)
-        // app.use(afterConfigure)
     }
     app.use(normalizeError)
 
-    if (staticProxy) {
-        app.use(staticProxy)
+    if (proxies.static) {
+        app.use(proxies.static)
     }
 
     app.use(normalizeData)
@@ -64,8 +56,9 @@ export const createServer = (config: IServerConfigure = {}) => {
         app.use(router.allowedMethods())
     })
 
-    const proxies = { ...defaultHttpProxy, ...httpProxy }
-    app.use(requestProxy(proxies))
+    if (proxies.request) {
+        app.use(proxies.request)
+    }
 
     app.use(baseRouter.routes())
     app.use(baseRouter.allowedMethods())

@@ -1,11 +1,10 @@
 import * as React from 'react'
 import qs from 'qs'
 import styles from './styles/WordCardPage.module.scss'
-import { transformStyles } from 'react-dom-basic-kit'
+import { transformStyles, useModal } from '@react-kits/dom'
 import AxiosClient from 'axios'
 import { usePageProps, ConfirmModal, TipsModal } from '@smoex-mobile/basic'
 import { useLocation } from 'react-router'
-import { useModal } from 'react-dom-basic-kit'
 const cx = transformStyles(styles)
 
 type IWordCardPageProps = {}

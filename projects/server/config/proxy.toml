@@ -1,0 +1,15 @@
+
+[static.paths]
+web = '/web/build',
+mobile = '/mobile/build',
+admin = '/admin/build',
+
+[http.hosts]
+admin = 'http://localhost:9001'
+
+
+
+[dev.static.paths]
+web = '/web/build',
+mobile = '/mobile/build',
+admin = '/admin/build',

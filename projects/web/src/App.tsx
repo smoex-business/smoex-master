@@ -1,12 +1,11 @@
 import * as React from 'react'
-import { Route, Link, Redirect } from 'react-router-dom'
-import { configureStore, createSlice } from 'redux-async-kit'
-import { StaticRouter, BrowserRouter } from 'react-router-dom'
-import { createLazyComponent } from 'react-logic-utils'
-import styles from './app.module.scss'
+import { Route, Link, StaticRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { accountReducer } from '@smoex-business/user'
-import { Container } from '@smoex-web/basic'
+import styles from './app.module.scss'
+import { configureStore, createSlice } from '@react-kits/redux'
+import { createLazyComponent } from '@react-kits/common'
+import { accountReducer } from '@smoex-logic/user'
+import { PageContainer } from '@smoex-web/basic'
 
 const HomePage = createLazyComponent({
   loader: () => import ('./containers/HomePage' /* webpackChunkName: "home" */),
@@ -61,12 +60,14 @@ export const store = configureStore(
   initialState,
 )
 
+
 export const App: React.FC<any> = (props) => {
+  
   return (
-    <Container>
+    <PageContainer>
       <Route exact path="/" component={HomePage} />
-      <Route path="/user" component={User} />
-    </Container>
+    </PageContainer>
+
   )
 }
 

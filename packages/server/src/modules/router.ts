@@ -61,7 +61,6 @@ router.get('*', async (ctx: any, next) => {
         excludeStaticPaths = ['/dev', '/api', '/bff'],
     } = ctx.config
 
-    console.log(staticPath)
     if (excludeStaticPaths.find((path: string) => ctx.url.startsWith(path))) {
         await next()
         return
@@ -93,6 +92,10 @@ router.get('*', async (ctx: any, next) => {
 
 export default router
 
+export function createRouter(prefix: string) {
+    return new Router({ prefix })
+}
+
 function splitHtmlString(shtml: string) {
     return shtml
         .replace('</head>', '@{head-before}' + '</head>')
@@ -115,7 +118,6 @@ async function renderHtmlStream(ssr: ISSRModule, opts: ISSRStreamOpts) {
     
     await ssr.dispatch?.(opts.url)
     const state = store.getState()
-    console.log(12312123)
     const render = ssr.render(opts.url)
     console.log(render)
     render.pipe(stream, { end: false })

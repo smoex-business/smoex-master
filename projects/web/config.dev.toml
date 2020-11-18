@@ -1,0 +1,14 @@
+
+[aliyun]
+    [aliyun.oss]
+    bucket = smoex-public
+    package = master-web
+    endpoint = https://public.smoex.com
+
+    [aliyun.auth]
+    accessKeyId = LTAI694joxMGgHJa
+    accessKeySecret = siOZ41IRUliP6mzca7BfejgvP5furM
+
+[server]
+
+[api]

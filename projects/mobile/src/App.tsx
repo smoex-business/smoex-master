@@ -1,11 +1,11 @@
 import * as React from 'react'
 import { Route } from 'react-router-dom'
-import { configureStore, useActionCallback } from 'redux-async-kit'
+import { configureStore } from '@react-kits/redux'
+import { createLazyComponent } from '@react-kits/common'
 import { PageRouter, Footer } from '@smoex-mobile/basic'
-import { userSlice, accountAsyncAction } from '@smoex-business/user'
+import { userSlice, accountAsyncAction } from '@smoex-logic/user'
 import { Provider } from 'react-redux'
 import { homeSlice } from '@smoex-master/logic'
-import { createLazyComponent } from 'redux-async-kit'
 
 const store = configureStore({
   injector: userSlice.injector,

@@ -1,5 +1,5 @@
-import { accountReducer } from '@smoex-business/user'
-import { createSlice } from 'redux-async-kit'
+import { accountReducer } from '@smoex-logic/user'
+import { createSlice } from '@react-kits/redux'
 
 export const homeSlice = createSlice('home', {
     account: accountReducer,

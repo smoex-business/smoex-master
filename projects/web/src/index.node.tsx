@@ -1,23 +1,28 @@
 import React from 'react'
 import { renderToStaticNodeStream } from 'react-dom/server'
 import { testSlice, AppSSR, store } from './App'
-import { accountAsyncAction } from '@smoex-business/user'
-import { proxy } from '@smoex-business/basic'
+import { accountAsyncAction } from '@smoex-logic/user'
+import { proxy } from '@smoex-logic/basic'
 // import { asyncDispatch } from 'redux-async-kit'
-import { sleep } from 'basic-kit-js'
+import { xSleep } from '@basic-kits/js'
 
 const dispatch = createDispatchModule([{
-  '*': [[
-    testSlice.dispatch(accountAsyncAction.getInfo())
-  ]],
-  'x': [[
-    testSlice.dispatch(accountAsyncAction.getInfo()),
-  ]],
+  // '*': [[
+  //   testSlice.dispatch(accountAsyncAction.getInfo())
+  // ]],
+  // 'x': [[
+  //   testSlice.dispatch(accountAsyncAction.getInfo()),
+  // ]],
 }])
 
 const { getRefs, render } = createSSRModule(AppSSR, {
   store, proxy,
 })
+
+//  = createSSRModule(AppSSR, {
+//   store, proxy,
+// })
+
 
 export { getRefs, render, dispatch }
 
@@ -66,5 +71,5 @@ export function createSSRModule(App: React.FC<any>, opts: ISSRModuleOpts = {} as
 }
 
 export async function asyncDispatch(timeout: number, promise: any[]) {
-  return await Promise.race([Promise.all(promise), sleep(timeout)])
+  return await Promise.race([Promise.all(promise), xSleep(timeout)])
 }

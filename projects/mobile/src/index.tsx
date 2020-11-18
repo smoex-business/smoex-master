@@ -1,6 +1,8 @@
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom'
-import * as serviceWorker from './serviceWorker'
+// import * as serviceWorker from './serviceWorker'
+import { starter } from '@smoex-web/basic'
+
 // import App from './App'
 
 const App = React.lazy(() => import('./App' /* webpackChunkName: "app" */))
@@ -13,9 +15,12 @@ const LazyApp = () => {
   )
 }
 
-ReactDOM.render(<LazyApp />, document.getElementById('root'))
+starter.initial()
 
+starter.render(<LazyApp />, document.getElementById('root'))
+
+starter.unregister()
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister()
+// serviceWorker.unregister()

@@ -11,7 +11,7 @@ module.exports = {
     index: './src/server.ts',
   },
   optimization: {
-    nodeEnv: 'production',
+    nodeEnv: process.env.NODE_ENV,
   },
   output: {
     filename: '[name].js',

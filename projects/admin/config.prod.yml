@@ -1,5 +1,0 @@
-aliyun:
-  oss: 
-    bucket: smoex-public
-    package: primary-web
-    endpoint: https://public.smoex.com

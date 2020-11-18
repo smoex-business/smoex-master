@@ -1,10 +1,9 @@
 import * as React from 'react'
 import styles from './styles/HomePage.module.scss'
-import { transformStyles } from 'react-dom-basic-kit'
+import { transformStyles, useToggleToast } from '@react-kits/dom'
 import { Link, useLocation } from 'react-router-dom'
-import { accountAsyncAction } from '@smoex-business/user'
+import { accountAsyncAction } from '@smoex-logic/user'
 import { homeSlice } from '@smoex-master/logic'
-import { useToggleToast } from 'react-dom-basic-kit'
 const cx = transformStyles(styles)
 
 // name = Home

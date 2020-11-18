@@ -1,22 +1,11 @@
-import { createServer } from './basic'
-import app from './basic/base'
-import users  from './routes/users'
-import tests  from './routes'
-import { Context, Next } from 'koa'
-
-// const devRemotePaths = {
-//     web: '../web/build',
-//     mobile: '../mobile/build',
-    
-//     admin: '../admin/build',
-// }
+import { staticProxy, requestProxy, createServer, IHttpProxyConfig } from '@smoex-master/base'
+import userRouter  from './routes/users'
+import testRouter  from './routes'
 
 const devRemotePaths = {
-   '/': {
-     web: '../web/build',
-     mobile: '../mobile/build',
-   },
-   '/admin': '../admin/build',
+    web: '../web/build',
+    mobile: '../mobile/build',
+    admin: '../admin/build',
 }
 
 const prodRemotePaths = {
@@ -25,24 +14,41 @@ const prodRemotePaths = {
     admin: '/master-admin',
 }
 
-const configure = async (ctx: Context, next: Next) => {
-    const ua = ctx.header['user-agent']
-    const isMobile = /AppleWebKit.*Mobile.*/i.test(ua)
-    const remotePaths: any = process.env.NODE_ENV === 'production' ? prodRemotePaths : devRemotePaths
-    const staticPath = isMobile ? remotePaths["/"].mobile : remotePaths["/"].web
-
-    ctx.config.remotePaths = remotePaths
-
-    // ctx.config.staticPath = staticPath
-    ctx.config.ssrModulePath = staticPath + '/server'
-
-    await next()
+const devHostPaths = {
+    basic: 'http://localhost:9001'
 }
 
-const routers = [users, tests]
+const prodHostPaths = {
+    basic: '', 
+}
 
-export default createServer({
-    routers,
-    configure,
-})
+const isProd = process.env.NODE_ENV === 'production' 
+const paths = isProd ? prodRemotePaths : devRemotePaths
+const hosts = isProd ? devHostPaths : prodHostPaths
+
+const remotePaths = [
+    { route: '/', path: paths.web },
+    { route: '/', path: paths.mobile, device: 'mobile' },
+    { route: '/admin', path: paths.admin },
+]
+
+const httpProxy: IHttpProxyConfig = {
+    '^/api/admin/word': {
+        pathRewrite: {
+            '^/api/admin': '/admin',
+        },
+        target: hosts.basic,
+        changeOrigin: true,
+    }
+}
+
+
+const routers = [userRouter, testRouter]
+
+const proxies = {
+    static: staticProxy(remotePaths),
+    request: requestProxy(httpProxy),
+}
+
+export default createServer({ routers, proxies })
 

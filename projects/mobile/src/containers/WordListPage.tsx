@@ -1,7 +1,7 @@
 import * as React from 'react'
 
 import styles from './styles/WordListPage.module.scss'
-import { transformStyles } from 'react-dom-basic-kit'
+import { transformStyles } from '@react-kits/dom'
 const cx = transformStyles(styles)
 
 type IWordListPageProps = {}

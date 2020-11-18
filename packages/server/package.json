@@ -1,0 +1,29 @@
+{
+  "name": "@smoex-master/base",
+  "version": "0.0.1",
+  "description": "A simplify work flow for redux",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smoex-logic/smoex-business.git"
+  },
+  "keywords": [],
+  "author": "lynnkoo",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/smoex-logic/smoex-business/issues"
+  },
+  "homepage": "https://github.com/smoex-logic/smoex-business#readme",
+  "dependencies": {
+    "@smoex-logic/basic": "^0.0.2",
+    "@smoex-web/basic": "^0.0.9",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.2.2"
+  }
+}
