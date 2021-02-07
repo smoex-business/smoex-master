@@ -1,0 +1,4 @@
+[submodule "services/api"]
+	path = services/api
+	url = https://github.com/smoex-business/smoex-learn-jp--api.git
+	ignore = all
