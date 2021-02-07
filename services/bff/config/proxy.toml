@@ -1,0 +1,11 @@
+['/api/search']
+to = '/search'
+target = 'api://search'
+
+['/api/kanji']
+to = '/kanji'
+target = 'rpc://kanji'
+
+['/api/account']
+to = '/account'
+target = 'http://gateway.smoex.com/'

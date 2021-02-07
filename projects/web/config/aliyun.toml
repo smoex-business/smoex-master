@@ -1,0 +1,17 @@
+[static]
+region = "oss-cn-shanghai"
+bucket = "smoex-public"
+
+[static.web]
+package = "master-web"
+
+[static.mobile]
+package = "master-mobile"
+
+[server]
+region = "cn-shanghai"
+serverName = 'smoex-master-server.187E67948223'
+
+[server.search]
+serverName = 'smoex-learn-jp-server.6D0A3851CEBB'
+rewritePath = ['/api/search', '/search']

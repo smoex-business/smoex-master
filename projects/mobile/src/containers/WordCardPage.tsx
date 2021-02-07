@@ -10,9 +10,9 @@ const cx = transformStyles(styles)
 type IWordCardPageProps = {}
 
 export const fetchAPI = AxiosClient.create({
-  baseURL: process.env.PUBLIC_URL,
+  baseURL: 'https://www.smoex.com',
   // baseURL: 'https://api.smoex.com',
-  timeout: 100000,
+  timeout: 10000000,
   headers: {
     'Content-Type': 'application/x-www-form-urlencoded',
   },
@@ -111,8 +111,8 @@ const WordVoiceText: React.FC<any> = (props) => {
 
 export const WordProcess: React.FC<any> = (props) => {
   const { idx, max } = props
-  const modal = useModal((mProps: any) => (
-    <TipsModal {...mProps}>
+  const modal = useModal(({ uuid }) => (
+    <TipsModal uuid={uuid} >
       <div>
         This is a tips for test tips modal
         <br />
@@ -162,8 +162,8 @@ export const WordCardPage: React.FC<IWordCardPageProps> = (props: any) => {
     }
   }
 
-  const modal = useModal((mProps: any) => (
-    <ConfirmModal {...mProps} onConfirm={onConfirm}>
+  const modal = useModal(({ uuid }) => (
+    <ConfirmModal uuid={uuid} onConfirm={onConfirm}>
       <div>Please confirm for play audio.</div>
     </ConfirmModal>
   ))

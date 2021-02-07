@@ -1,0 +1,20 @@
+[res]
+region = "oss-cn-shanghai"
+bucket = "smoex-public"
+
+[res.web]
+package = "master-web"
+
+[res.mobile]
+package = "master-mobile"
+
+[api]
+region = "cn-shanghai"
+alias = 'smoex-master-server.187E67948223'
+
+[api.search]
+alias = 'smoex-learn-jp-server.6D0A3851CEBB'
+
+
+
+

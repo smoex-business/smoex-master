@@ -1,0 +1,20 @@
+[static]
+local = false
+
+[static.web]
+path = "./projects/web/build"
+
+[static.mobile]
+path = "./projects/web/build"
+
+# [static.ext.admin]
+# path = "../../projects/mobile/build"
+
+[server]
+proxy = false
+
+[server.account]
+host = "127.0.0.1:9001"
+
+[server.search]
+host = "http://24280089-1894173216965361.test.functioncompute.com"

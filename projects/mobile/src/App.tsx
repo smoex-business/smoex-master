@@ -38,6 +38,12 @@ const WordCardPage = createLazyComponent({
   loader: () => import('./containers/WordCardPage' /* webpackChunkName: "word-card" */),
 })
 
+const JPWordCardPage = createLazyComponent({
+  injector: homeSlice.injector,
+  loader: () => import('./containers/JPSearchPage' /* webpackChunkName: "word-card" */),
+})
+
+
 // const HomePage: React.FC = () => {
 //   return (<div>123465</div>)
 // }
@@ -51,6 +57,7 @@ const App: React.FC = () => {
         <Route path="/word/list" component={WordListPage} />
         <Route path="/word/card" component={WordCardPage} />
         <Route path="/word" component={WordPage} />
+        <Route path="/jpsearch" component={JPWordCardPage} />
       </PageRouter>
     </Provider>
   )

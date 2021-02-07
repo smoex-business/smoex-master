@@ -27,14 +27,18 @@
   },
   "homepage": "https://github.com/smoex-business/smoex-business#readme",
   "dependencies": {
-    "@react-kits/redux": "^0.0.4",
-    "@smoex-logic/basic": "^0.0.2"
+    "@react-kits/dom": "^0.0.9",
+    "@react-kits/redux": "^0.0.6",
+    "@smoex-logic/basic": "^0.0.2",
+    "@smoex-nodejs/server": "^0.0.2",
+    "@types/lodash": "^4.14.168"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
     "@storybook/addon-info": "^5.2.8",
     "@storybook/react": "^5.2.8",
     "@types/axios": "^0.14.0",
+    "@types/lodash": "^4.14.168",
     "@types/node": "^12.7.8",
     "@types/qs": "^6.9.0",
     "@types/react-redux": "^7.1.9",

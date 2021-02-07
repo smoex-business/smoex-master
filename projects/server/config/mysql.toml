@@ -1,6 +1,0 @@
-host
-
-host: (process.env.OSS_ENV === 'development' || process.env.NODE_ENV !== 'production') ? devHost : prodHost, //数据库地址，这里用的是本地
-    database: 'smoex_learn_jp_dataset', //数据库名称
-    user: 'smoex_root',  // username
-    password: 'smoexxxxx', // password

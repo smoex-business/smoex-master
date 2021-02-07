@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Route, Link, StaticRouter } from 'react-router-dom'
+import { Route, Link, StaticRouter, matchPath } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import styles from './app.module.scss'
 import { configureStore, createSlice } from '@react-kits/redux'

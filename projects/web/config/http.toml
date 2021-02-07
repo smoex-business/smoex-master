@@ -1,5 +1,0 @@
-[server]
-port = 9000
-
-[admin]
-uri = http://localhost:8000

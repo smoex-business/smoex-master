@@ -1,7 +1,11 @@
 {
   "packages": [
     "packages/*",
-    "projects/*"
+    "packages/lib/*",
+    "projects/*",
+    "projects/ext/*",
+    "services/*",
+    "services/api/*"
   ],
   "version": "independent",
   "useWorkspaces": true,
